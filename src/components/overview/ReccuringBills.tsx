@@ -31,7 +31,7 @@ function ReccuringBills() {
     return summary
   }
 
-  const summary = useMemo(() => summaryBills(), [reccuringTransactions])
+  const summary = useMemo(() => summaryBills(), [])
   return (
     <div className='row-span-2 flex h-fit flex-col gap-4 rounded-lg bg-white p-4 xl:col-span-2'>
       {' '}

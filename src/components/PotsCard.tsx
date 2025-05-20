@@ -29,16 +29,6 @@ function PotsCard({ pot, onDelete, onEdit, existingNames, onUpdateTotal }: Props
   const progressValue = Math.min(100, ((pot.total + addedValue + withdrawValue) / pot.target) * 100)
   const currentTotal = pot.total + addedValue + withdrawValue
 
-  const handleAddMoney = () => {
-    if (currentTotal >= pot.target) return
-    setAddedValue((value) => value + 1)
-  }
-
-  const handleWithdraw = () => {
-    if (currentTotal <= 0) return
-    setWithdrawValue((value) => value - 1)
-  }
-
   return (
     <div className='flex flex-1 flex-col gap-3 rounded-lg bg-white p-4'>
       <div className='flex justify-between'>

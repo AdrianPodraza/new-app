@@ -4,8 +4,6 @@ import React, { useState } from 'react'
 import data from '@/app/assets/data.json'
 import AddPotsButton from '@/components/pots/AddPotsButton'
 import AddPotModal from '@/components/pots/modals/AddPotModal'
-import AddMoney from '@/components/pots/modals/AddMoney'
-import WithdrawMoney from '@/components/pots/modals/WithdrawMoney'
 
 function Pots() {
   const [pots, setPots] = useState(data.pots)
@@ -14,7 +12,7 @@ function Pots() {
     setPots((prev) => prev.map((pot) => (pot.name === name ? { ...pot, total: newTotal } : pot)))
   }
 
-  const handleAddPot = (newPot) => {
+  const handleAddPot = (newPot: { name: string; target: number; total: number; theme: string }) => {
     setPots((prev) => [...prev, newPot])
   }
 

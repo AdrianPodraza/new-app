@@ -133,10 +133,10 @@ function BudgetActions({ initialCategory, onDelete, onEdit, theme, initialMaximu
               onEdit(
                 {
                   category,
-                  maximum: parseFloat(maximum),
+                  maximum: maximum,
                   theme: themeState,
                 },
-                initialCategory, // przekazujemy oryginalną kategorię
+                initialCategory,
               )
               setEditOpen(false)
             }}
@@ -150,7 +150,7 @@ function BudgetActions({ initialCategory, onDelete, onEdit, theme, initialMaximu
       <Dialog open={deleteOpen} onOpenChange={setDeleteOpen}>
         <DialogContent className='flex flex-col rounded-lg bg-white p-4'>
           <DialogHeader>
-            <DialogTitle className='text-grey-900 text-[32px] font-bold'>Delete '{category}'?</DialogTitle>
+            <DialogTitle className='text-grey-900 text-[32px] font-bold'>Delete &apos;{category}&apos;?</DialogTitle>
             <DialogDescription className='text-[14px] text-gray-500'>
               Are you sure you want to delete this budget? This action cannot be reversed.
             </DialogDescription>

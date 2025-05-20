@@ -13,9 +13,14 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Button } from '@/components/ui/button'
-import AddPotModal from './AddPotModal'
 
-function EditPotModal({ onAddPot }: { onAddPot: (Pot: any) => void }) {
+interface Pot {
+  potName: string
+  theme: string
+  limit: number
+}
+
+function EditPotModal({ onAddPot }: { onAddPot: (Pot: Pot) => void }) {
   const [potName, setPotName] = useState('')
   const [theme, setTheme] = useState('')
   const [maxSpend, setMaxSpend] = useState('')

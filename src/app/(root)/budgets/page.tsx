@@ -11,7 +11,7 @@ import { toast } from 'sonner'
 export default function Page() {
   const [budgets, setBudgets] = useState(data.budgets)
 
-  const handleAddBudget = (newBudget) => {
+  const handleAddBudget = (newBudget: { category: string; maximum?: number; theme?: string }) => {
     const categoryExists = budgets.some((b) => b.category.toLowerCase() === newBudget.category.toLowerCase())
 
     if (categoryExists) {
@@ -19,8 +19,14 @@ export default function Page() {
       return
     }
 
-    setBudgets((prev) => [...prev, newBudget])
-    toast.success(`Added new budget: ${newBudget.category}`)
+    const safeBudget = {
+      category: String(newBudget.category),
+      maximum: typeof newBudget.maximum === 'number' ? newBudget.maximum : 0,
+      theme: typeof newBudget.theme === 'string' ? newBudget.theme : '',
+    }
+
+    setBudgets((prev) => [...prev, safeBudget])
+    toast.success(`Added new budget: ${safeBudget.category}`)
   }
   const calculateAmount = (category: string) => {
     return Math.abs(

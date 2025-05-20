@@ -2,10 +2,6 @@
 
 import { usePathname } from 'next/navigation'
 import React from 'react'
-import AddBudgetButton from './budgets/buttons/AddBudgetButton'
-import path from 'path'
-import AddPotsButton from './pots/AddPotsButton'
-import AddBudgetModal from './budgets/modals/addBudgetModal'
 
 function Pathname() {
   const pathname = usePathname()

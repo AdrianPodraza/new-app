@@ -14,7 +14,13 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Button } from '@/components/ui/button'
 
-function AddBudgetModal({ onAddBudget }: { onAddBudget: (budget: any) => void }) {
+type Budget = {
+  category: string
+  theme: string
+  maximum: number
+}
+
+function AddBudgetModal({ onAddBudget }: { onAddBudget: (budget: Budget) => void }) {
   const [category, setCategory] = useState('')
   const [theme, setTheme] = useState('')
   const [maxSpend, setMaxSpend] = useState('')

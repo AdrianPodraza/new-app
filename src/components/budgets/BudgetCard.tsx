@@ -1,6 +1,6 @@
 'use client'
 import { ChevronRight } from 'lucide-react'
-import React, { useState } from 'react'
+import React from 'react'
 import { Progress } from '../ui/progress'
 import Image from 'next/image'
 

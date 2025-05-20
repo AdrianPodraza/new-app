@@ -14,7 +14,14 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Button } from '@/components/ui/button'
 
-function AddPotModal({ onAddPot }: { onAddPot: (Pot: any) => void }) {
+type Pot = {
+  name: string
+  theme: string
+  target: number
+  total: number
+}
+
+function AddPotModal({ onAddPot }: { onAddPot: (Pot: Pot) => void }) {
   const [name, setName] = useState('')
   const [target, setTarget] = useState(0)
   const [total, setTotal] = useState(0)
