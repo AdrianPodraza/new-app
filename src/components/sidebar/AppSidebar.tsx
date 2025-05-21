@@ -2,6 +2,7 @@
 import {
   Sidebar,
   SidebarContent,
+  SidebarFooter,
   SidebarGroup,
   SidebarGroupContent,
   SidebarMenu,
@@ -9,12 +10,14 @@ import {
   SidebarMenuItem,
 } from '@/components/ui/sidebar'
 
-import { Home, ArrowUpDown, PieChartIcon as ChartPie, Receipt, ReceiptText } from 'lucide-react'
+import { Home, ArrowUpDown, PieChartIcon as ChartPie, Receipt, ReceiptText, User, LogIn } from 'lucide-react'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
+import { Button } from '../ui/button'
+import Link from 'next/link'
 
 const items = [
-  { title: 'Overview', url: '/overview', icon: Home },
+  { title: 'Overview', url: '/', icon: Home },
   { title: 'Transactions', url: '/transactions', icon: ArrowUpDown },
   { title: 'Budgets', url: '/budgets', icon: ChartPie },
   { title: 'Pots', url: '/pots', icon: Receipt },
@@ -27,7 +30,7 @@ export function AppSidebar() {
     <>
       {/* Desktop Sidebar */}
       <Sidebar className='hidden border-none lg:flex [&>div]:rounded-r-lg'>
-        <SidebarContent className='bg-grey-900 min-h-screen rounded-r-lg pr-4'>
+        <SidebarContent className='bg-grey-900 flex min-h-screen flex-col justify-between rounded-r-lg pr-4'>
           <SidebarGroup className='text-grey-300 p-0 font-bold'>
             <Image src='/assets/images/logo-large.svg' width={121} height={30} alt='logo' className='px-4 py-8' />
             <SidebarGroupContent>
@@ -49,6 +52,20 @@ export function AppSidebar() {
               </SidebarMenu>
             </SidebarGroupContent>
           </SidebarGroup>
+          <SidebarFooter className='mb-14 gap-4'>
+            <Link href='/sign-up'>
+              <Button className='w-full cursor-pointer rounded-lg bg-green-600 text-white hover:bg-green-700'>
+                <p>Sign up</p>
+                <User />
+              </Button>
+            </Link>
+            <Link href='/sign-in'>
+              <Button className='w-full cursor-pointer rounded-lg bg-gray-700 text-white hover:bg-gray-800'>
+                <p>Sign In</p>
+                <LogIn />
+              </Button>
+            </Link>
+          </SidebarFooter>
         </SidebarContent>
       </Sidebar>
 

@@ -2,7 +2,7 @@
 
 import * as React from 'react'
 import { ChevronRight } from 'lucide-react'
-import { PieChart, Pie, Cell, Tooltip, Label } from 'recharts'
+import { PieChart, Pie, Cell, Tooltip, Label, ResponsiveContainer } from 'recharts'
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { ChartContainer, ChartTooltipContent } from '@/components/ui/chart'
@@ -59,31 +59,41 @@ export default function Budgets({ colStart, colSpan, rowSpan, budgets, detailed 
       <CardContent className='flex flex-row items-center justify-between gap-6 pb-0 xl:flex-1'>
         {/* Wykres z kwotą w środku */}
         <div className='aspect-square xl:flex-1'>
-          <ChartContainer config={chartConfig} className='aspect-square'>
-            <PieChart>
-              <Tooltip content={<ChartTooltipContent />} />
-              <Pie data={budgets} dataKey='maximum' nameKey='category' innerRadius={70} outerRadius={100}>
-                {budgets?.map((entry, idx) => <Cell key={idx} fill={entry.theme} />)}
-                <Label
-                  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                  content={(props: any) => {
-                    const { viewBox } = props
-                    const { cx, cy } = viewBox
-                    return (
-                      <text x={cx} y={cy} textAnchor='middle' dominantBaseline='middle'>
-                        <tspan x={cx} y={cy} className='fill-foreground text-2xl font-bold'>
-                          {`$${total}`}
-                        </tspan>
-                        <tspan x={cx} y={cy + 20} className='fill-muted-foreground text-sm'>
-                          limit
-                        </tspan>
-                      </text>
-                    )
-                  }}
-                />
-              </Pie>
-            </PieChart>
-          </ChartContainer>
+          <ResponsiveContainer width='100%' height='100%'>
+            <ChartContainer config={chartConfig} className='aspect-square'>
+              <PieChart>
+                <Tooltip content={<ChartTooltipContent />} />
+                <Pie
+                  data={budgets}
+                  dataKey='maximum'
+                  nameKey='category'
+                  cx='50%'
+                  cy='50%'
+                  innerRadius='40%'
+                  outerRadius='60%'
+                >
+                  {budgets.map((entry, idx) => (
+                    <Cell key={`cell-${idx}`} fill={entry.theme} />
+                  ))}
+                  <Label
+                    content={({ viewBox }) => {
+                      const { cx, cy } = viewBox
+                      return (
+                        <text x={cx} y={cy} textAnchor='middle' dominantBaseline='middle'>
+                          <tspan x={cx} y={cy} className='fill-foreground text-2xl font-bold'>
+                            ${total}
+                          </tspan>
+                          <tspan x={cx} y={cy + 20} className='fill-muted-foreground text-sm'>
+                            limit
+                          </tspan>
+                        </text>
+                      )
+                    }}
+                  />
+                </Pie>
+              </PieChart>
+            </ChartContainer>
+          </ResponsiveContainer>
         </div>
 
         {/* Legenda */}
