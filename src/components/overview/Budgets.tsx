@@ -9,6 +9,8 @@ import { ChartContainer, ChartTooltipContent } from '@/components/ui/chart'
 import type { ChartConfig } from '@/components/ui/chart'
 import { cn } from '@/lib/utils'
 import { useMemo } from 'react'
+import CustomLabel from '../CustomLabel'
+import { cx } from 'class-variance-authority'
 
 interface BudgetItem {
   category: string
@@ -77,17 +79,19 @@ export default function Budgets({ colStart, colSpan, rowSpan, budgets, detailed 
                   ))}
                   <Label
                     content={({ viewBox }) => {
-                      const { cx, cy } = viewBox
-                      return (
-                        <text x={cx} y={cy} textAnchor='middle' dominantBaseline='middle'>
-                          <tspan x={cx} y={cy} className='fill-foreground text-2xl font-bold'>
-                            ${total}
-                          </tspan>
-                          <tspan x={cx} y={cy + 20} className='fill-muted-foreground text-sm'>
-                            limit
-                          </tspan>
-                        </text>
-                      )
+                      if (viewBox && 'cx' in viewBox && 'cy' in viewBox) {
+                        const { cx, cy } = viewBox
+                        return (
+                          <text x={cx} y={cy} textAnchor='middle' dominantBaseline='middle'>
+                            <tspan x={cx} y={cy} className='fill-foreground text-2xl font-bold'>
+                              ${total}
+                            </tspan>
+                            <tspan x={cx} y={cy + 20} className='fill-muted-foreground text-sm'>
+                              limit
+                            </tspan>
+                          </text>
+                        )
+                      }
                     }}
                   />
                 </Pie>
