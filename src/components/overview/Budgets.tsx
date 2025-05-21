@@ -84,7 +84,7 @@ export default function Budgets({ colStart, colSpan, rowSpan, budgets, detailed 
                             <tspan x={cx} y={cy} className='fill-foreground text-2xl font-bold'>
                               ${total}
                             </tspan>
-                            <tspan x={cx} y={cy + 20} className='fill-muted-foreground text-sm'>
+                            <tspan x={cx} y={(cy ?? 0) + 20} className='fill-muted-foreground text-sm'>
                               limit
                             </tspan>
                           </text>
