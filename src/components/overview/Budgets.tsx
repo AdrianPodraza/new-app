@@ -9,8 +9,6 @@ import { ChartContainer, ChartTooltipContent } from '@/components/ui/chart'
 import type { ChartConfig } from '@/components/ui/chart'
 import { cn } from '@/lib/utils'
 import { useMemo } from 'react'
-import CustomLabel from '../CustomLabel'
-import { cx } from 'class-variance-authority'
 
 interface BudgetItem {
   category: string
